@@ -4,34 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace areyesS2T
+namespace Core
 {
     public class Calificacion
 
 
     {
 
-        double seguimiento1;
-        double seguimiento2;
-
-        public static double Notaseguimiento1(double seguimiento1)
+        public static double NotaSeguimiento1(double seguimiento1)
         {
             return seguimiento1 * 0.3;
         }
 
-        public static double NotaExamen(double seguimiento2)
+        public static double NotaExamen1(double notaExamen1)
         {
-            return seguimiento2 * 0.2;
+            return notaExamen1 * 0.2;
         }
 
-        public static double NotaParcial1(double seguimiento1, double seguimiento2)
+        public static double NotaParcial1(double seguimiento1, double notaExamen1)
         {
-            return seguimiento1 + seguimiento2;
+            return seguimiento1 + notaExamen1;
         }
 
-        public static double NotaSeguimiento2(double seguimiento1P2)
+        public static double NotaSeguimiento2(double seguimiento2)
         {
-            return seguimiento1P2 * 0.2;
+            return seguimiento2 * 0.3;
         }
 
         public static double NotaExamen2(double notaExamen2)
@@ -39,14 +36,18 @@ namespace areyesS2T
             return notaExamen2 * 0.2;
         }
 
-        public static double NotaFinal(double notaParcial1, double notaParcial2) {
-
-            return notaParcial1 + notaParcial2;
+        public static double NotaParcial2(double seguimiento2, double notaExamen2) 
+        {
+            return seguimiento2 + notaExamen2;
         }
 
+        public static double NotaFinal(double notaParcial1, double notaParcial2)
+        { 
+            return notaParcial1 + notaParcial2;
+        }
         public static string Estado(double notaFinal)
         {
-
+            
             if (notaFinal >= 7)
             {
                 return "Aprobado";
@@ -59,8 +60,9 @@ namespace areyesS2T
             {
                 return "Reprobado";
             }
-                    
-             
+
+            return "No ingresado";
+   
         }
     }
 }
