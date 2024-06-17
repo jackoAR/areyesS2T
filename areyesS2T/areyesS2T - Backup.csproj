@@ -68,10 +68,4 @@
 	  </Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="Ingreso.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
 </Project>

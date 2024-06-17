@@ -8,8 +8,8 @@
     Title="areyesS2T">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Inicio"
+        ContentTemplate="{DataTemplate local:Ingreso}"
+        Route="Ingreso" />
 
 </Shell>

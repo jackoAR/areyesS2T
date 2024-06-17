@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls.Internals;
-
-namespace areyesS2T
+﻿namespace areyesS2T
 {
     public partial class MainPage : ContentPage
     {
@@ -11,6 +9,11 @@ namespace areyesS2T
             InitializeComponent();
             _entryValidation = new EntryValidation();
             
+        }
+
+        public MainPage(string user) {
+            InitializeComponent();
+            lblDocente.Text = "Docente Conectado: " + user;
         }
 
         private void CalcularNotas(object sender, EventArgs e)
