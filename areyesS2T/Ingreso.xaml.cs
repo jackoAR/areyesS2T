@@ -1,10 +1,12 @@
 namespace areyesS2T;
 
 public partial class Ingreso : ContentPage
-{
+{   
+    private EntryValidation _entryValidation;
 	public Ingreso()
 	{
 		InitializeComponent();
+        _entryValidation = new EntryValidation();
 	}
 
     private void btnInicio_Clicked(object sender, EventArgs e)
@@ -16,18 +18,39 @@ public partial class Ingreso : ContentPage
                     {"José", "jose123" }
                 };
 
-        string[] userEntry = { txtUser.Text, txtPassword.Text };
+        var nombre = txtUser.Text;
+        var contrasena = txtPassword.Text;
 
-        foreach (var registro in usersBD) {
+        try
+        {
 
-            if (registro.Key == userEntry[0] && registro.Value == userEntry[1])
+            if (!string.IsNullOrEmpty(nombre) || !string.IsNullOrEmpty(contrasena))
             {
-                Navigation.PushAsync(new MainPage(userEntry[0]));// solo abre la pagina Home
+                Dictionary<string, string> credencialesEntry = new Dictionary<string, string>
+                {
+                    {"Nombre",txtUser.Text},
+                    {"Contraseña",txtPassword.Text}
+                };
+            
+            //validamos solo campos vacios
+            _entryValidation.CamposVacios(credencialesEntry);
+
+            if (usersBD.Keys.Contains(txtUser.Text) && usersBD.Values.Contains(txtPassword.Text))
+            {
+                Navigation.PushAsync(new MainPage(txtUser.Text));// solo abre la pagina Home
             }
-            else 
+            else
             {
-                DisplayAlert("ALERTA", "No existe ningún usuario con esa contraseña", "OK");
+                DisplayAlert("ALERTA", "NO EXISTE NINGÚN USUARIO CON ESE NOMBRE Y CLAVE", "OK");
+            }
+
+
             }
         }
+        catch (InputException ex)
+        {
+                DisplayAlert("Error: ", ex.Message, "OK");
+        }
+        
     }
 }

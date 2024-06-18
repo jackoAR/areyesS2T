@@ -22,7 +22,7 @@
                 Aspect="AspectFit" />
             
             <Label x:Name="lblDocente"
-               HorizontalTextAlignment="End"
+               HorizontalOptions="Start"
                FontSize="20"
                TextColor="BlueViolet"
                />

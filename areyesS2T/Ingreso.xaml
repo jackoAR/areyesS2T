@@ -52,6 +52,7 @@
 
             <Entry x:Name="txtPassword"
                Placeholder="Ingrese contraseña"
+               IsPassword="True"
                Grid.Row="1"
                Grid.Column="1"/>
 

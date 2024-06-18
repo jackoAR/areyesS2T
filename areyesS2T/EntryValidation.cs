@@ -67,5 +67,17 @@ namespace areyesS2T
                 }
             }
         }
+
+        public void GeneralEntryValidation(Dictionary<string, string> notas)
+        {
+            CamposVacios(notas);
+            ValidarCaracteres(notas);
+            RangoNotas(notas);            
+            NumerosNegativos(notas);
+        }
+
+        //Recomendaciones: usar una clase generica, usar excepciones en casos excepcionales caso contrario
+        //usar solo una estructura de control
+
     }
 }

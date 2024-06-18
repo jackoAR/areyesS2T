@@ -14,6 +14,7 @@
         public MainPage(string user) {
             InitializeComponent();
             lblDocente.Text = "Docente Conectado: " + user;
+            _entryValidation = new EntryValidation();
         }
 
         private void CalcularNotas(object sender, EventArgs e)
@@ -25,24 +26,20 @@
             //guardamos el elemento como string en la variable local nombre
             var nombre = SelectEstudiante.Items[elementoSeleccionado].ToString();
 
-            //validar campos vacios
-            try
-            {
-                
-                //creamos un diccionario con el texto y nombre del campo como clave
-                Dictionary<string, string> notas = new Dictionary<string, string>
+            //creamos un diccionario con el texto y nombre del campo como clave
+            Dictionary<string, string> notas = new Dictionary<string, string>
                 {
                     {"Nota Seguimiento 1", NS1.Text },
                     {"Nota Examen 1", NE1.Text},
                     {"Nota Seguimiento 2", NS2.Text },
                     {"Nota Examen 2", NE2.Text }
                 };
-                
+            
+            //Manejo de Excepciones
+            try
+            {
                 //evaluamos los campos antes de procesar los datos
-                _entryValidation.CamposVacios(notas);
-                _entryValidation.RangoNotas(notas);
-                _entryValidation.ValidarCaracteres(notas);
-                _entryValidation.NumerosNegativos(notas);
+                _entryValidation.GeneralEntryValidation(notas);
 
                 //obtenemos fecha ingresada
                 DateTime fechaIngresada = DPfecha.Date;
@@ -88,8 +85,9 @@
                 + "Estado: " + Core.Calificacion.Estado(notaFinal), "Aceptar");
 
             }
-            catch (InputException ex) {
-
+            catch (InputException ex)//atrapamos las excepciones de los lanzadores
+            {
+                //Mostramos mensaje específico del error
                 DisplayAlert("Error", ex.Message, "Aceptar");
 
             }
